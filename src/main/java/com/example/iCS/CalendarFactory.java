@@ -53,8 +53,8 @@ public class CalendarFactory {
     }
 
     public static void printCalendar(Calendar calendar) throws IOException {
-            FileOutputStream fout = new FileOutputStream("myCalendar.ics");
-            CalendarOutputter outputter = new CalendarOutputter();
-            outputter.output(iCS, fout);
+        FileOutputStream fout = new FileOutputStream("myCalendar.ics");
+        CalendarOutputter outputter = new CalendarOutputter();
+        outputter.output(iCS, fout);
     }
 }
