@@ -1,5 +1,6 @@
 package com.example.iCS;
 
+import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Date;
 import net.fortuna.ical4j.model.component.VEvent;
@@ -8,6 +9,8 @@ import net.fortuna.ical4j.model.property.ProdId;
 import net.fortuna.ical4j.model.property.Version;
 import net.fortuna.ical4j.util.RandomUidGenerator;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -46,6 +49,16 @@ public class CalendarFactory {
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static void printCalendar(Calendar calendar){
+        try {
+            FileOutputStream fout = new FileOutputStream("myCalendar.ics");
+            CalendarOutputter outputter = new CalendarOutputter();
+            outputter.output(iCS, fout);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
