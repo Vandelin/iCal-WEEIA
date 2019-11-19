@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CalendarController {
 
     @GetMapping
-    public void getCalendarForYearAndMonth(@RequestParam(name = "year") String year,
+    public Boolean getCalendarForYearAndMonth(@RequestParam(name = "year") String year,
                                               @RequestParam(name = "month") String month) {
         Integer ye = Integer.parseInt(year);
         Integer mo = Integer.parseInt(month);
@@ -22,16 +22,20 @@ public class CalendarController {
         try {
             CalendarFactory.printCalendar(calendar);
         } catch (IOException e) {
+            return false;
         }
+        return true;
     }
 
     @GetMapping("/now")
-    public void getCalendarNow() {
+    public Boolean getCalendarNow() {
         HTML html = new HTML("http://www.weeia.p.lodz.pl", java.util.Calendar.getInstance().get(java.util.Calendar.YEAR), java.util.Calendar.getInstance().get(java.util.Calendar.MONTH));
         Calendar calendar = CalendarFactory.getCalendar(html.getEvents(), html.getMonth(), html.getYear());
         try {
             CalendarFactory.printCalendar(calendar);
         } catch (IOException e) {
+            return false;
         }
+        return true;
     }
 }

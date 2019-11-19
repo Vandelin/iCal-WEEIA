@@ -26,7 +26,9 @@ public class CalendarFactory {
     public static Calendar getCalendar(HashMap<Integer, String> events, int month, int day) {
         try {
             calendar = java.util.Calendar.getInstance();
-            iCS.getProperties().addAll(Arrays.asList(CalScale.GREGORIAN, new ProdId("//Kalendarz-weeia/"), Version.VERSION_2_0));
+            iCS.getProperties().add(CalScale.GREGORIAN);
+            iCS.getProperties().add(new ProdId("//Kalendarz-weeia/"));
+            iCS.getProperties().add(Version.VERSION_2_0);
             date = new SimpleDateFormat("yyyyMM").parse("2019" + month);
 
             calendar.setTime(date);
